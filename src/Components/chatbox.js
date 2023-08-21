@@ -248,7 +248,6 @@ export const Chatbox = () => {
           onChange={typinghandler}
           style={{ width: "100%" }}
         />
-         { (width <= "750" && selectedChat) &&   <button onClick={sendData} className="sendbtn px-2">send</button>}
           </div>
     </div>
   ) 

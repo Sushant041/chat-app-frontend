@@ -182,9 +182,7 @@ export const Sidedrawer = () => {
               </div>
             })
           }
-           {/* <div className='mx-3' style={{position : 'absolute'}}>
-          {notification.length}
-           </div> */}
+          
          </div>
 
         <div className="dropdown">
