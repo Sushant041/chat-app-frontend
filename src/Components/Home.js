@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { Signup } from "./signup";
 import { Login } from "./login";
 
@@ -8,21 +7,7 @@ import { Login } from "./login";
 
 export const Home = () => {
 
-    let navigate = useNavigate();
-
-    useEffect(() =>{
-        const tokeninfo = localStorage.getItem("token");
-
-        if(tokeninfo){
-           navigate("/chat");
-        }
-        else{
-          navigate("/");
-        }
-
-    }, [])
-
-
+  
   const [showl, setShowl] = useState(true);
   const [shows, setShows] = useState(false);
  

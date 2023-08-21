@@ -14,16 +14,13 @@ const ChatProvider = ({children}) =>{
     
 
     useEffect(() =>{
-        // console.log(JSON.parse(localStorage.getItem("token")))
         let userinfo = JSON.parse(localStorage.getItem("token"));
        
         setUser(userinfo);        
 
     }, [])
 
-    // console.log(user)
-    
-    
+     
     
 
     return( <ChatContext.Provider value={{ user, setUser, selectedChat, setSelectedChat, chats, setChats, notification, setNotification }}>

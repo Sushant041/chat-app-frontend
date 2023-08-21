@@ -97,14 +97,6 @@ export const Sidedrawer = () => {
     }
 
 
-    if (loading) {
-      return (<div style={{textAlign: "center", color: "white"}}>
-            <h3>Loading......</h3>
-           <div className="lds-ring" style={{color: "white"}}>
-           <div></div><div></div><div></div><div></div></div> 
-               </div>)
-    }
-
   return (
 
     <div  className=" d-flex justify-content-center" style={{width: "100vw", backgroundColor: "#0d6efd" }} >
