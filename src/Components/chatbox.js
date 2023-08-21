@@ -11,6 +11,7 @@ const ENDPOINT = "https://chat-jzip.onrender.com"
 
 export const Chatbox = () => {
 
+  const [loading, setLoading] = useState(false)
   const [newmessage, setNewMessage] = useState("");
   const [message, setMessage] = useState([]);
   const [socketConnected, setSocketConnected] = useState(false)
@@ -28,6 +29,7 @@ export const Chatbox = () => {
     }
 
     try {
+      setLoading(true)
       const config = {
         headers: {
           Authorization: `Bearer ${user.authtoken}`,
@@ -40,6 +42,7 @@ export const Chatbox = () => {
       );
 
       setMessage(data);
+      setLoading(false)
       socket.emit("join chat", selectedChat._id);
 
     } catch (error) {
@@ -96,6 +99,7 @@ export const Chatbox = () => {
     if (e.key === "Enter" && newmessage) {
       socket.emit("stop typing", selectedChat._id)
       try {
+        setLoading(true)
         const config = {
           headers: {
             Authorization: `Bearer ${user.authtoken}`,
@@ -112,8 +116,9 @@ export const Chatbox = () => {
           config
         );
         socket.emit("new message", data)
-
+        
         setMessage([...message, data]);
+        setLoading(false)
       } catch (error) {
         alert(error);
       }
@@ -128,6 +133,8 @@ export const Chatbox = () => {
     }
     socket.emit("stop typing", selectedChat._id)
       try {
+
+        setLoading(true)
         const config = {
           headers: {
             Authorization: `Bearer ${user.authtoken}`,
@@ -144,7 +151,7 @@ export const Chatbox = () => {
           config
         );
         socket.emit("new message", data)
-
+          setLoading(false)
         setMessage([...message, data]);
       } catch (error) {
         alert(error);
@@ -211,7 +218,7 @@ export const Chatbox = () => {
           wordWrap: "break-word",
         }}
       >  
-         <Scrollchat message={message} />
+          <Scrollchat message={message} />
          </div>
        : 
         <div className="d-flex flex-column align-items-center justify-content-center" style={{height: "90%"}}>

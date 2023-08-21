@@ -75,7 +75,7 @@ export const Signup = () => {
     }
 
     try {
-      const response = await fetch("/api/user/createuser", {
+      const response = await fetch("https://chat-jzip.onrender.com/api/user/createuser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

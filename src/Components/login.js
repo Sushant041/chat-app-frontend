@@ -62,7 +62,7 @@ export const Login = () => {
 
 
     if (Loading) {
-        return (<div style={{textAlign: "center", color: "white"}}>
+        return (<div style={{textAlign: "center", color: "black"}}>
               <h3>Loading......</h3>
              <div className="lds-ring">
              <div></div><div></div><div></div><div></div></div> 

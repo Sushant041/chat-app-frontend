@@ -28,7 +28,7 @@ export const Groupmodel = () => {
               },
           };
 
-          const {data} = await axios.post("https://chat-jzip.onrender.comapi/chat/creategroupchat", {
+          const {data} = await axios.post("https://chat-jzip.onrender.com/api/chat/creategroupchat", {
               name: grpName,
               users: JSON.stringify(userToAdd.map((u) => u._id)),
           }, config);

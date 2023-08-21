@@ -60,7 +60,7 @@ export const Sidedrawer = () => {
               },
             };
 
-            const response = await axios.get(`/api/user/allusers?search=${search}`, config);
+            const response = await axios.get(`https://chat-jzip.onrender.com/api/user/allusers?search=${search}`, config);
               
             setLoading(false);
             setSearchResult(response.data);
@@ -83,7 +83,7 @@ export const Sidedrawer = () => {
           },
         };
   
-        const {data} = await axios.post("/api/chat", { userId }, config);
+        const {data} = await axios.post("https://chat-jzip.onrender.com/api/chat", { userId }, config);
          setSelectedChat(data[0]);
   
       } catch (error) {
@@ -94,9 +94,16 @@ export const Sidedrawer = () => {
 
     const shownoti = () =>{
       setShownot(!shownot);
-      console.log("show");
     }
 
+
+    if (loading) {
+      return (<div style={{textAlign: "center", color: "white"}}>
+            <h3>Loading......</h3>
+           <div className="lds-ring" style={{color: "white"}}>
+           <div></div><div></div><div></div><div></div></div> 
+               </div>)
+    }
 
   return (
 

@@ -5,31 +5,7 @@ import React from 'react'
 
 export const Userlist = ({u, handleClick}) => {
 
-  // const { user, setSelectedChat } = usechatContext()
-
-
-  // const accessChat = async (userId) =>{
-        
-  //   try {
-
-
-  //      const config = {
-  //       headers: {
-  //         "Content-type" : "application/json",
-  //         Authorization: `Bearer ${user.authtoken}`,
-  //       },
-  //     };
-
-  //     const response = await axios.post("/api/chat", { userId }, config);
-  //     console.log(response.data._id);
-  //     setSelectedChat(response.data);
-
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // }
-
-
+ 
   return (
     <div className="container my-2" style={{overflowY: "auto"}} >
       <div className='row'>
