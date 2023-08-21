@@ -120,37 +120,7 @@ export const Chatbox = () => {
     }
   };
 
-  const sendData = async() =>{
-
-      if(!newmessage){
-      alert("please enter message");
-      return 0;
-    }
-    socket.emit("stop typing", selectedChat._id)
-      try {
-
-        const config = {
-          headers: {
-            Authorization: `Bearer ${user.authtoken}`,
-          },
-        };
-        
-        setNewMessage("");
-        const { data } = await axios.post(
-          "https://chat-jzip.onrender.com/api/message",
-          {
-            content: newmessage,
-            chatId: selectedChat._id,
-          },
-          config
-        );
-        socket.emit("new message", data)
-        setMessage([...message, data]);
-      } catch (error) {
-        alert(error);
-      }
-  }
-
+  
 
   const typinghandler = (e) =>{
     setNewMessage(e.target.value)
