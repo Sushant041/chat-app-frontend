@@ -1,0 +1,275 @@
+::-webkit-scrollbar {
+  width: 0;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: sans-serif;
+  -ms-overflow-style: none; /* This hides the scrollbar */
+  scrollbar-width: thin; 
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid white;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: white transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 8% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 380px; /* Could be more or less, depending on screen size */
+}
+
+.close {
+  color: #aaa;
+  position: relative;
+  margin-left: 95%;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mcontent{
+  border-radius: 5px;
+  font-family: 'Dancing Script', 'cursive';
+}
+
+
+
+.drawer-container {
+  --transition-speed: 0.3s;
+}
+
+.drawer {
+  background: #fff;
+  width: 350px;
+  height: 100%;
+	overflow: hidden;
+  position: fixed;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition-speed) ease;
+  z-index: 1000;
+}
+
+.drawer.left {
+  padding: 2%;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.drawer-container.open .left {
+  transform: translateX(0);
+}
+
+.backdrop {
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity var(--transition-speed) ease,
+    visibility var(--transition-speed) ease;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  pointer-events: none;
+	z-index: 0;
+}
+
+/*
+	Only apply the box-shadow when open to prevent the shadow
+  from appearing on the edge of the screen when inactive
+ */
+.drawer-container.open .drawer {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.drawer-container.open .backdrop {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+	z-index: 999;
+}
+.userSch{
+  background-color: #e3e3e3;
+  height: 8vh;
+  border-radius: 5px;
+}
+.userSch:hover{
+  background-color: #0d6efd;
+  cursor: pointer;
+  transition: .6s;
+}
+.userch{
+  background-color: #e3e3e3;
+  height: 8vh;
+  width : 90%;
+  border-radius: 5px;
+}
+.userch:hover{
+  background-color: #0d6efd;
+  cursor: pointer;
+  color: white;
+  transition: .3s;
+}
+
+.box{
+  height:94vh;
+  width: 45%;
+  overflow-y: auto;
+  background-color: #fff;
+}
+.chathead{
+  width: 100%;
+  position: sticky;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.mychat{
+  opacity: .8;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 28px;
+}
+.chatbtn{
+  border: none;
+  opacity: .8;
+  padding: 5px;
+  border-radius: 4px;
+}
+.chatbtn:hover{
+  background-color: #dbdbdb;
+}
+
+.grouphead{
+  font-size: 25px;
+  opacity: .7;
+}
+
+.mesinp{
+  width: 100%;
+    height: 53px;
+    margin-top: 2%;
+    border-radius: 22px;
+}
+
+.hide {
+  cursor: pointer;
+  background-color: rgb(208, 208, 208);
+}
+
+.notif:hover{
+  cursor: pointer;
+}
+
+.sendbtn{
+  opacity: .8;
+  border: 1px solid #bbbbbb;
+  margin: 5px 0px 0px 80%;
+  border-radius: 5px;
+}
+
+.chatbox{
+  background-color: white;
+  width: 100%;
+  height: 94vh;
+}
+
+
+@media only screen and (max-width: 750px) {
+
+  .box {
+    width : 100%;
+    height: 94vh;
+  }
+
+  .chatbox {
+    width : 100vw;
+    height: 94vh;
+  }
+
+  .seacrchbtn{
+    font-size: 13px;
+    padding: 5px;
+  }
+  .slideheading{
+    font-size: 28px;
+  }
+  .notif{
+    font-size: 12px;
+    margin-top: -5px;
+  }
+
+  .sldrp {
+    padding: 2px 5px;
+  }
+}
+
+
+
+
+
