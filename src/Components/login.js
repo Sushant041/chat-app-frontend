@@ -115,17 +115,6 @@ export const Login = () => {
           className="d-flex justify-content-center"
           style={{ width: "100%" }}
         >
-          <button
-            className="btn btn-primary mt-2 "
-            type="submit"
-            style={{ width: "100%", background: "-webkit-linear-gradient(left, #003366,#004080,#0059b3, #0073e6)" }}
-            onClick={() => {
-              credentials.email = "guest@example.com";
-              credentials.password = "123456";
-            }}
-          >
-            Guest User
-          </button>
         </div>
       </form>
     </div>
