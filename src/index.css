@@ -156,7 +156,6 @@ body {
 }
 .userSch{
   background-color: #e3e3e3;
-  height: 8vh;
   border-radius: 5px;
 }
 .userSch:hover{
@@ -166,7 +165,6 @@ body {
 }
 .userch{
   background-color: #e3e3e3;
-  height: 8vh;
   width : 90%;
   border-radius: 5px;
 }
