@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { Signup } from "./signup";
+import {useNavigate} from "react-router-dom"
 import { Login } from "./login";
 
 
 export const Home = () => {
 
+  let nevigate = useNavigate;
+
+  let token = localStorage.getItem("token");
+
+  if(token){
+   nevigate("/chat");
+  }
   
   const [showl, setShowl] = useState(true);
   const [shows, setShows] = useState(false);
@@ -12,7 +20,7 @@ export const Home = () => {
   return (
     <div
       className="d-flex flex-column align-items-center justify-content-center "
-      style={{ height: "100vh", background: "-webkit-linear-gradient(left, #003366,#004080,#0059b3, #0073e6)" }}
+      style={{ height: "100vh",width: "100vw", background: "-webkit-linear-gradient(left, #003366,#004080,#0059b3, #0073e6)" }}
     >
       <div       className="d-flex flex-column align-items-center justify-content-center "
          style={{ height: "500px", width: "380px", backgroundColor: "white", borderRadius: "50px 5px" }}>

@@ -11,7 +11,7 @@
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: auto;
   font-family: sans-serif;
   -ms-overflow-style: none; /* This hides the scrollbar */
   scrollbar-width: thin; 
