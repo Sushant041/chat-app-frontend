@@ -249,7 +249,7 @@ export const Chatbox = () => {
                 onKeyDown={sendMessage}
                 value={newmessage}
                 onChange={typinghandler}
-                style={{ width: "100%", paddingRight: "14%"}}
+                style={{ width: "100%", paddingRight: "50px"}}
               />
               <button className="sendButton" 
               style={{border: "none", marginLeft: "-40px", marginTop: "10px", background: "none", fontSize: "20px", opacity: ".7"}}
