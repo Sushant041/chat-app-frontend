@@ -6,6 +6,7 @@ import io from "socket.io-client"
 import {getSender }from "./chatlogics"
 
 
+
 const ENDPOINT = "https://chat-jzip.onrender.com"
  let socket, selectedChatCompare;
 
@@ -120,6 +121,37 @@ export const Chatbox = () => {
     }
   };
 
+
+  const sendMessage2 = async (e) => {
+
+    if (newmessage) {
+      socket.emit("stop typing", selectedChat._id)
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.authtoken}`,
+          },
+        };
+        
+        setNewMessage("");
+        const { data } = await axios.post(
+          "https://chat-jzip.onrender.com/api/message",
+          {
+            content: newmessage,
+            chatId: selectedChat._id,
+          },
+          config
+        );
+        socket.emit("new message", data)
+        
+        setMessage([...message, data]);
+      }
+       catch (error) {
+        alert(error);
+      }
+    }
+  };
+
   
 
   const typinghandler = (e) =>{
@@ -208,16 +240,23 @@ export const Chatbox = () => {
           </div>
            : <> </>
         }
-        <input
-          type="text"
-          className="form-control mesinp"
-          required
-          placeholder="Enter Message"
-          onKeyDown={sendMessage}
-          value={newmessage}
-          onChange={typinghandler}
-          style={{ width: "100%" }}
-        />
+           <div className="d-flex">
+              <input
+                type="text"
+                className="form-control mesinp"
+                required
+                placeholder="Enter Message"
+                onKeyDown={sendMessage}
+                value={newmessage}
+                onChange={typinghandler}
+                style={{ width: "100%" }}
+              />
+              <button className="sendButton" 
+              style={{border: "none", marginLeft: "-11%", background: "none", fontSize: "20px", opacity: ".7"}}
+               onClick={sendMessage2}>
+                <i className="fas fa-paper-plane"></i>
+              </button>
+            </div>
           </div>
     </div>
   ) 
