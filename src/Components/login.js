@@ -48,7 +48,7 @@ export const Login = () => {
 
         localStorage.setItem("token", JSON.stringify(json));
         
-        navigate("/chat");
+        navigate("/");
       }
       
       else {

@@ -97,7 +97,7 @@ export const Signup = () => {
          alert("Registration Successful")
 
          localStorage.setItem("token", JSON.stringify(json));
-         navigate("/chat");
+         navigate("/");
       } else {
         alert("Invalid Credentials");
       }
