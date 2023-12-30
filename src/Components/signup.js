@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { usechatContext } from "./context/chatcontext"
 
 
 export const Signup = () => {
 
 
+  const { setUser } = usechatContext();
+
     let navigate = useNavigate();
     const [pic, setPic] = useState();
     const [Loading, setLoading] = useState(false);
+    const [picdata, setPicdata] = useState("");
 
   const [credentials, setCredentials] = useState({
     name: "",
@@ -24,8 +28,7 @@ export const Signup = () => {
 
 
 
-  const postDetails = (pics, e) => {
-    e.preventDefault();
+  const postDetails = async (pics) => {
   
     if (pics === undefined) {
       setLoading(false);
@@ -43,15 +46,17 @@ export const Signup = () => {
   data.append("file", pics);
   data.append("upload_preset", "chatting");
   data.append("cloud_name", "dfgxnaxon");
+
   
-  fetch("https://api.cloudinary.com/v1_1/dfgxnaxon/image/upload", {
+  
+    await fetch("https://api.cloudinary.com/v1_1/dfgxnaxon/image/upload", {
     method: "post",
     body: data, // Fix the typo here
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       setPic(data.url.toString());
+      console.log(pic);
       setLoading(false);
     })
     .catch((err) => {
@@ -66,6 +71,7 @@ export const Signup = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     setLoading(true);
+     await postDetails(picdata)
     const { name, email, password, cpassword } = credentials;
 
     if (password !== cpassword) {
@@ -73,9 +79,9 @@ export const Signup = () => {
       alert("password did not match");
       return 0;
     }
-
+      
     try {
-      const response = await fetch("https://chat-jzip.onrender.com/api/user/createuser", {
+      const response = await fetch("http://localhost:5000/api/user/createuser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -90,6 +96,7 @@ export const Signup = () => {
       const json = await response.json();
 
       console.log(json);
+       setUser(json)
       setLoading(false);
 
       if (json.success) {
@@ -102,6 +109,7 @@ export const Signup = () => {
         alert("Invalid Credentials");
       }
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -187,7 +195,7 @@ export const Signup = () => {
             accept="image/*"
             type="file"
             id="pic"
-            onChange={(e) => postDetails(e.target.files[0], e)}
+            onChange={(e) => setPicdata(e.target.files[0])}
           />
         </div>
 

@@ -14,7 +14,7 @@ export const Scrollchat = ({message}) => {
               return <div className='d-flex' key={m._id}>
               {(isSameSender(message, m, i, user._id) || isLastMessage(message, i, user._id)) && (
                   <div>
-                      <img src={user.pic} style={{ width: "30px", borderRadius: "50%" }} alt="user img" />
+                      <img src={m.sender.pic} style={{ width: "30px", height: "30px", borderRadius: "50%" }} alt="user img" />
                   </div>
               )}
 

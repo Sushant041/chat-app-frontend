@@ -7,7 +7,8 @@ import {getSender }from "./chatlogics"
 
 
 
-const ENDPOINT = "https://chat-jzip.onrender.com"
+// const ENDPOINT = "https://chat-jzip.onrender.com"
+const ENDPOINT = "http://localhost:5000"
  let socket, selectedChatCompare;
 
 export const Chatbox = () => {
@@ -36,11 +37,12 @@ export const Chatbox = () => {
       };
 
       const { data } = await axios.get(
-        `https://chat-jzip.onrender.com/api/message/${selectedChat._id}`,
+        `http://localhost:5000/api/message/${selectedChat._id}`,
         config
       );
 
       setMessage(data);
+      console.log(data);
       socket.emit("join chat", selectedChat._id);
 
     } catch (error) {
@@ -49,14 +51,13 @@ export const Chatbox = () => {
   };
 
 
-  useEffect(() =>{
 
+  useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
-    socket.on("typing", () => setIsTyping(true))
-    socket.on("stop typing", () => setIsTyping(false))
-
+    socket.on("typing", () => setIsTyping(true));
+    socket.on("stop typing", () => setIsTyping(false));
   }, []);
 
 
@@ -85,10 +86,8 @@ export const Chatbox = () => {
         setMessage([...message, newMessageReceived]);
       }
     });
-   
     
-    
-  })
+  });
   
 
  
@@ -105,7 +104,7 @@ export const Chatbox = () => {
         
         setNewMessage("");
         const { data } = await axios.post(
-          "https://chat-jzip.onrender.com/api/message",
+          "http://localhost:5000/api/message",
           {
             content: newmessage,
             chatId: selectedChat._id,
@@ -113,7 +112,6 @@ export const Chatbox = () => {
           config
         );
         socket.emit("new message", data)
-        
         setMessage([...message, data]);
       } catch (error) {
         alert(error);
@@ -135,7 +133,7 @@ export const Chatbox = () => {
         
         setNewMessage("");
         const { data } = await axios.post(
-          "https://chat-jzip.onrender.com/api/message",
+          "http://localhost:5000/api/message",
           {
             content: newmessage,
             chatId: selectedChat._id,
@@ -184,14 +182,17 @@ export const Chatbox = () => {
     <div
       className="d-flex chatbox flex-column align-items-center justify-content-center"
     >
-      <div className="d-flex align-items-center justify-content-between" style={{width: "100%"}}>
+      <div className="d-flex align-items-center justify-content-between" style={{width: "100%", marginTop: "14px"}}>
               {selectedChat && selectedChat.isGroupChat ? (
           <div className="" style={{ fontSize: "28px", opacity: ".8" }}>
             {selectedChat.chatName.toUpperCase()}
           </div>
         ) : ( 
           <div className="mx-3" style={{ fontSize: "20px" }}>
-            {selectedChat && <img src={user.pic} className="mx-3" style={{ width: "30px", borderRadius: "50%"}} alt="user img" />}
+            {selectedChat &&
+            <img src={ 
+                selectedChat.users[1]._id === user._id ? selectedChat.users[0].pic : selectedChat.users[1].pic
+              } className="mx-3" style={{ width: "30px", height: "30px", borderRadius: "50%"}} alt="user img" />}
 
             {getSender(selectedChat, user)}
           </div>
@@ -212,9 +213,11 @@ export const Chatbox = () => {
           scrollbarWidth: "none",
           wordWrap: "break-word",
         }}
-      >  
+      >   
           <Scrollchat message={message} />
+   
          </div>
+         
        : 
         <div className="d-flex flex-column align-items-center justify-content-center" style={{height: "90%"}}>
           <span className="px-2" style={{fontSize: "2rem", opacity: ".7"}}>
@@ -227,10 +230,9 @@ export const Chatbox = () => {
              </lottie-player>
         </div>
        }
-
-        
-
-      <div
+       
+       { selectedChat &&
+        <div
         className="mb-3 px-3"
         style={{ width: "100%", marginTop: "2%", position: "relative" }}
       >
@@ -258,6 +260,8 @@ export const Chatbox = () => {
               </button>
             </div>
           </div>
+       }
+      
     </div>
   ) 
 

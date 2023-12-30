@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { usechatContext } from "./context/chatcontext"
 
 
 export const Login = () => {
 
+  const { setUser } = usechatContext();
 
     let navigate = useNavigate();
 
@@ -30,7 +31,7 @@ export const Login = () => {
     const { email, password } = credentials;
 
     try {
-      const response = await fetch("https://chat-jzip.onrender.com/api/user/login", {
+      const response = await fetch("http://localhost:5000/api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,6 +43,8 @@ export const Login = () => {
       });
       setLoading(false);
       const json = await response.json();
+
+      setUser(json)
 
       if (json.success) {
         setLoading(false);

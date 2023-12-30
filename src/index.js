@@ -1,12 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from "react-dom/client";
 import App from './App';
 import './index.css';
 import ChatProvider from './Components/context/chatcontext';
 
-ReactDOM.render(
+const root = document.getElementById('root');
+const rootElement = createRoot(root);
+
+rootElement.render(
   <ChatProvider>
-     <App />
-  </ChatProvider>,
-  document.getElementById('root')
+    <App />
+  </ChatProvider>
 );

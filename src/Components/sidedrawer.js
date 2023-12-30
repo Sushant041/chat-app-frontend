@@ -34,7 +34,7 @@ export const Sidedrawer = () => {
 
     let navigate = useNavigate();
 
-    const logout= () => {
+    const logout = () => {
          localStorage.removeItem("token");
          setSelectedChat();
          navigate("/")
@@ -52,23 +52,26 @@ export const Sidedrawer = () => {
     const handleClick = async () =>{
        
       try {
-          setLoading(true)
-          
-            const config = {
-              headers: {
-                Authorization: `Bearer ${user.authtoken}`,
-              },
-            };
-
-            const response = await axios.get(`https://chat-jzip.onrender.com/api/user/allusers?search=${search}`, config);
-              
-            setLoading(false);
-            setSearchResult(response.data);
-
-        } catch (error) {
-            setLoading(false);
-            alert(error);
-        }
+        setLoading(true);
+      
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.authtoken}`,
+          },
+          params: {
+            search: search,
+          },
+        };
+      
+        const response = await axios.get("http://localhost:5000/api/user/allusers", config);
+      
+        setLoading(false);
+        setSearchResult(response.data);
+      } catch (error) {
+        setLoading(false);
+        alert(error);
+      }
+      
     }
 
     const accessChat = async (userId) =>{
@@ -83,8 +86,10 @@ export const Sidedrawer = () => {
           },
         };
   
-        const {data} = await axios.post("https://chat-jzip.onrender.com/api/chat", { userId }, config);
+        const {data} = await axios.post("http://localhost:5000/api/chat", { userId }, config);
          setSelectedChat(data[0]);
+
+         console.log(data)
   
       } catch (error) {
         alert(error);
@@ -106,7 +111,7 @@ export const Sidedrawer = () => {
        <div className="app">
            <button onClick={() => setIsOpen(!isOpen)} className="form-control seacrchbtn ms-0" type="search">
               <i className="fa-solid fa-magnifying-glass mx-2"></i>
-                Search
+                Search Users
             </button>
 
             <Drawer isOpen={isOpen} onClose={() => setIsOpen(false)}>
@@ -139,15 +144,13 @@ export const Sidedrawer = () => {
                        <Chatloading/>
                     ) 
                    :
-
-                     
-                        searchResult.map((u) =>{
+                       searchResult.map((u) =>{
                             return <Userlist
                              key={u._id} u={u}
                              handleClick={() => accessChat(u._id)}
                              />
-                        }) 
-                       
+                        },
+                         )   
                      
                  }
 
@@ -187,7 +190,7 @@ export const Sidedrawer = () => {
 
         <div className="dropdown">
         <button className="btn btn-light sldrp dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img style={{width: "30px", borderRadius: "50%"}} className='mx-1' src={user.pic} alt="" />
+            <img style={{width: "30px", height: "30px", borderRadius: "50%"}} className='mx-1' src={user.pic} alt="" />
         </button>
         <ul className="dropdown-menu">
             <li><button className="dropdown-item" id="myBtn" onClick={myprofile}>My Profile</button></li>
@@ -205,8 +208,10 @@ export const Sidedrawer = () => {
           <span className="close" onClick={closeModel}>&times;</span>
 
           <div className='mcontent'>
-          <p className='display-5 d-flex justify-content-center '>{user.name}</p>
-            <img style={{width: "70%", marginLeft: "15%", borderRadius: "50%", border: "2px solid #b4b4b4"}} src={user.pic} alt="" />
+          <p className='display-5 d-flex justify-content-center align-items-center '>{user.name}</p>
+          <div className='d-flex justify-content-center align-items-center'>
+            <img style={{width: "200px", height: "200px", borderRadius: "50%", border: "2px solid #b4b4b4"}} src={user.pic} alt="" />
+          </div>
             <div className='d-flex my-3 flex-column align-items-center justify-content-center'  style={{fontSize: "30px", backgroundColor: "rgb(235 235 235)", borderRadius: "8px"}}>
                Email : {user.email}
             </div>

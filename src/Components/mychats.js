@@ -40,7 +40,7 @@ export const Mychats = () => {
         },
       };
 
-      const response = await axios.get('https://chat-jzip.onrender.com/api/chat/allchats', config);
+      const response = await axios.get('http://localhost:5000/api/chat/allchats', config);
       const { data } = response;
 
       setChats(data);
@@ -50,7 +50,6 @@ export const Mychats = () => {
   };
 
  useEffect(() => {
-   
    fetchAllChats();
 });
 
@@ -81,13 +80,19 @@ export const Mychats = () => {
             <div className="row">
               {chats.map((chat) => {
                 return <div className="container userch d-flex align-items-center px-4 col-12 my-1"
-                onClick={() =>{
-                  setSelectedChat(chat)
+                onClick={ () => {
+                  setLoading(true);
+                  setTimeout(() => {
+                    setLoading(false)
+                  }, 1000);
+                  setSelectedChat(chat);
                 }} 
                 key={chat._id}
+                style={{height: "60px"}}
                   >
-                                 
-                 <img className='me-3' src={user.pic} style={{width: "50px", borderRadius: "50%"}} alt="" />
+                { chat &&<img className='me-3' src={
+                  chat.users[1]._id === user._id ? chat.users[0].pic : chat.users[1].pic
+                  } style={{width: "50px", height: "50px", borderRadius: "50%"}} alt="" />}
                   {!chat.isGroupChat ?
                    (
                     chat &&
