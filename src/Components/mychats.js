@@ -40,7 +40,7 @@ export const Mychats = () => {
         },
       };
 
-      const response = await axios.get('http://localhost:5000/api/chat/allchats', config);
+      const response = await axios.get('https://chat-jzip.onrender.com//api/chat/allchats', config);
       const { data } = response;
 
       setChats(data);

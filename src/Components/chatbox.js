@@ -8,7 +8,7 @@ import {getSender }from "./chatlogics"
 
 
 // const ENDPOINT = "https://chat-jzip.onrender.com"
-const ENDPOINT = "http://localhost:5000"
+const ENDPOINT = "https://chat-jzip.onrender.com/"
  let socket, selectedChatCompare;
 
 export const Chatbox = () => {
@@ -37,7 +37,7 @@ export const Chatbox = () => {
       };
 
       const { data } = await axios.get(
-        `http://localhost:5000/api/message/${selectedChat._id}`,
+        `https://chat-jzip.onrender.com//api/message/${selectedChat._id}`,
         config
       );
 
@@ -104,7 +104,7 @@ export const Chatbox = () => {
         
         setNewMessage("");
         const { data } = await axios.post(
-          "http://localhost:5000/api/message",
+          "https://chat-jzip.onrender.com//api/message",
           {
             content: newmessage,
             chatId: selectedChat._id,
@@ -133,7 +133,7 @@ export const Chatbox = () => {
         
         setNewMessage("");
         const { data } = await axios.post(
-          "http://localhost:5000/api/message",
+          "https://chat-jzip.onrender.com//api/message",
           {
             content: newmessage,
             chatId: selectedChat._id,

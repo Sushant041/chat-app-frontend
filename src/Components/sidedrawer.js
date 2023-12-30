@@ -63,7 +63,7 @@ export const Sidedrawer = () => {
           },
         };
       
-        const response = await axios.get("http://localhost:5000/api/user/allusers", config);
+        const response = await axios.get("https://chat-jzip.onrender.com//api/user/allusers", config);
       
         setLoading(false);
         setSearchResult(response.data);
@@ -86,7 +86,7 @@ export const Sidedrawer = () => {
           },
         };
   
-        const {data} = await axios.post("http://localhost:5000/api/chat", { userId }, config);
+        const {data} = await axios.post("https://chat-jzip.onrender.com//api/chat", { userId }, config);
          setSelectedChat(data[0]);
 
          console.log(data)
@@ -170,10 +170,18 @@ export const Sidedrawer = () => {
           style={{backgroundColor: "white", borderRadius: "50%"}}
           onClick={() => shownoti()}></i>
           
-         {!notification.length && <div className='hide px-3 my-4' style={{position: "absolute", zIndex: "3", display: shownot ? "flex": "none"}}>No new messages</div>}
-          
+         {!notification.length && <div className='hide px-3 my-4'
+          style={{position: "absolute", zIndex: "3", display: shownot ? "flex": "none", backgroundColor :"white", borderRadius: "5px", border: "2px solid black"}}>
+            No new messages
+            </div>
+            }
+
+          { notification.length > 0 && <div className="d-flex justify-content-center  align-items-center" style={{position: "absolute", right: "89px", top: 0, zIndex: "4", background: "red", color: "white", width: "15px", height: "15px", borderRadius : "50%", fontSize: "12px", padding: "8px"}}>
+                {notification.length}
+            </div>
+            }
           { notification.map((n) =>{
-             return <div className='hide mx-5' style={{position: "absolute", zIndex: "3", display: shownot ? "flex": "none"}}
+             return <div className='hide mx-5' style={{position: "absolute", zIndex: "3", display: shownot ? "flex": "none", backgroundColor :"white", borderRadius: "5px", border: "2px solid black"}}
               key={n._id} onClick={() =>{setSelectedChat(n.chat)
               setNotification(notification.filter((x) => x !== n))}}
                >

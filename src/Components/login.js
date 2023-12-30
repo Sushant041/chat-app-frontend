@@ -31,7 +31,7 @@ export const Login = () => {
     const { email, password } = credentials;
 
     try {
-      const response = await fetch("http://localhost:5000/api/user/login", {
+      const response = await fetch("https://chat-jzip.onrender.com//api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
