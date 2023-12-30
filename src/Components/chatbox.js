@@ -7,8 +7,7 @@ import {getSender }from "./chatlogics"
 
 
 
-// const ENDPOINT = "https://chat-jzip.onrender.com"
-const ENDPOINT = "https://chat-jzip.onrender.com/"
+const ENDPOINT = "https://chat-app-xt1n.onrender.com/"
  let socket, selectedChatCompare;
 
 export const Chatbox = () => {
@@ -19,7 +18,7 @@ export const Chatbox = () => {
   const [typing , setTyping] = useState(false)
   const [istyping, setIsTyping] = useState(false)
 
-  const { selectedChat, setSelectedChat, notification, setNotification } = usechatContext();
+  const { selectedChat, setSelectedChat, notification, setNotification , Loading, setLoading } = usechatContext();
 
   const user = JSON.parse(localStorage.getItem('token'));
 
@@ -28,7 +27,7 @@ export const Chatbox = () => {
     if (!selectedChat) {
       return;
     }
-
+    setLoading(true);
     try {
       const config = {
         headers: {
@@ -37,12 +36,12 @@ export const Chatbox = () => {
       };
 
       const { data } = await axios.get(
-        `https://chat-jzip.onrender.com/api/message/${selectedChat._id}`,
+        `https://chat-app-xt1n.onrender.com/api/message/${selectedChat._id}`,
         config
       );
 
       setMessage(data);
-      console.log(data);
+      setLoading(false);
       socket.emit("join chat", selectedChat._id);
 
     } catch (error) {
@@ -104,7 +103,7 @@ export const Chatbox = () => {
         
         setNewMessage("");
         const { data } = await axios.post(
-          "https://chat-jzip.onrender.com/api/message",
+          "https://chat-app-xt1n.onrender.com/api/message",
           {
             content: newmessage,
             chatId: selectedChat._id,
@@ -133,7 +132,7 @@ export const Chatbox = () => {
         
         setNewMessage("");
         const { data } = await axios.post(
-          "https://chat-jzip.onrender.com/api/message",
+          "https://chat-app-xt1n.onrender.com/api/message",
           {
             content: newmessage,
             chatId: selectedChat._id,
@@ -177,6 +176,7 @@ export const Chatbox = () => {
 
 
   let width = window.screen.width;
+   
 
   return (width >= "750" || selectedChat) && (
     <div

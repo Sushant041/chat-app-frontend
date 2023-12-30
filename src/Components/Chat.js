@@ -14,7 +14,6 @@ let navigate = useNavigate()
 
    const { user } = usechatContext();
 
-  //  const [fetchAgain, setFetchAgain] = useState(false);
 
    const info =  localStorage.getItem("token") 
 

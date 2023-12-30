@@ -5,7 +5,12 @@ import { isLastMessage, isSameSender, isSameSenderMargin, isSameUser } from './c
 
 export const Scrollchat = ({message}) => {
 
-  const {user} = usechatContext()
+  const {user, Loading} = usechatContext()
+   if (Loading) {
+    return (<div className='d-flex justify-content-center align-items-center' style={{color: "black", opacity: ".8", height: "100%"}}>
+          <p>Loading your chats....</p>
+            </div>)
+  }
   return (
        <div style={{width: "100%", height: "99.5%"}}>
     <ScrollableFeed >
