@@ -30,7 +30,7 @@ export const Mychats = () => {
     }
   }
 
-  const fetchAllChats = async (chat) => {
+  const fetchAllChats = async () => {
     try {
       const config = {
         headers: {
