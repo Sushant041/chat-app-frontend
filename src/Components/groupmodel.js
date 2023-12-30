@@ -26,7 +26,7 @@ export const Groupmodel = () => {
               },
           };
 
-          const {data} = await axios.post(`https://chat-app-xt1n.onrender.com/api/chat/creategroupchat`, {
+          const {data} = await axios.post(`https://chat-jzip.onrender.com/api/chat/creategroupchat`, {
               name: grpName,
               users: JSON.stringify(userToAdd.map((u) => u._id)),
           }, config);
@@ -68,7 +68,7 @@ export const Groupmodel = () => {
                 },
             };
 
-            const response = await axios.get(`https://chat-app-xt1n.onrender.com/api/user/allusers?search=${val}`, config);
+            const response = await axios.get(`https://chat-jzip.onrender.com/api/user/allusers?search=${val}`, config);
             const { data } = response;
             setUserChat(data);
             setLoading(false);

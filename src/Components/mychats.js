@@ -7,16 +7,11 @@ import { Groupmodel } from './groupmodel';
 export const Mychats = () => {
 
 
-  const { chats,  setChats, selectedChat, setSelectedChat, setLoading , Loading} = usechatContext();
+  const { chats,  setChats, selectedChat, setSelectedChat, Loading} = usechatContext();
   const user = JSON.parse(localStorage.getItem('token'));
 
   
   const [show, setShow] = useState(false)
-
-  // const setStyle = (chat) => {
-  //   return {backgroundColor: selectedChat._id === chat._id ? "#0d6efd" : "",
-  //    color: selectedChat._id === chat._id  ? "white" : ""}
-  // }
 
   let modal = document.getElementById("myModal");
 
@@ -38,7 +33,7 @@ export const Mychats = () => {
         },
       };
 
-      const response = await axios.get('https://chat-app-xt1n.onrender.com/api/chat/allchats', config);
+      const response = await axios.get('https://chat-jzip.onrender.com/api/chat/allchats', config);
       const { data } = response;
       setChats(data);
     } catch (error) {

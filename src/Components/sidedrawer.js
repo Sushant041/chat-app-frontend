@@ -63,7 +63,7 @@ export const Sidedrawer = () => {
           },
         };
       
-        const response = await axios.get(`https://chat-app-xt1n.onrender.com/api/user/allusers`, config);
+        const response = await axios.get(`https://chat-jzip.onrender.com/api/user/allusers`, config);
       
         setLoading(false);
         setSearchResult(response.data);
@@ -86,7 +86,7 @@ export const Sidedrawer = () => {
           },
         };
   
-        const {data} = await axios.post(`https://chat-app-xt1n.onrender.com/api/chat`, { userId }, config);
+        const {data} = await axios.post(`https://chat-jzip.onrender.com/api/chat`, { userId }, config);
          setSelectedChat(data[0]);
 
          console.log(data)
