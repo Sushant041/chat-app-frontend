@@ -37,7 +37,7 @@ export const Chatbox = () => {
       };
 
       const { data } = await axios.get(
-        `https://chat-jzip.onrender.com//api/message/${selectedChat._id}`,
+        `https://chat-jzip.onrender.com/api/message/${selectedChat._id}`,
         config
       );
 
@@ -104,7 +104,7 @@ export const Chatbox = () => {
         
         setNewMessage("");
         const { data } = await axios.post(
-          "https://chat-jzip.onrender.com//api/message",
+          "https://chat-jzip.onrender.com/api/message",
           {
             content: newmessage,
             chatId: selectedChat._id,
@@ -133,7 +133,7 @@ export const Chatbox = () => {
         
         setNewMessage("");
         const { data } = await axios.post(
-          "https://chat-jzip.onrender.com//api/message",
+          "https://chat-jzip.onrender.com/api/message",
           {
             content: newmessage,
             chatId: selectedChat._id,
